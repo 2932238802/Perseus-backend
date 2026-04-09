@@ -1,0 +1,13 @@
+{
+  "id": "perseus-rust",
+  "name": "Rust Support For create and build",
+  "version": "1.0.0",
+  "description": "provides Cargo project creation and building support",
+  "contributes": {
+    "commands": {
+      "rust.create.linux": "./scripts/create.sh",
+      "rust.create.windows": "./scripts/create.bat",
+      "rust.build.linux": "./scripts/build.sh"
+    }
+  }
+}

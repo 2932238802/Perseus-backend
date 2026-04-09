@@ -1,0 +1,9 @@
+[
+  {
+    "id": "rust-extension",
+    "name": "Rust Support For create and build",
+    "version": "1.0.0",
+    "download_url": "http://localhost:3000/downloads/rust-extension.zip",
+    "readme_url": "http://localhost:3000/downloads/rust-extension/README.html"
+  }
+]
