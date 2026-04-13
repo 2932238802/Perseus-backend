@@ -1,0 +1,44 @@
+{
+  "id": "perseus-rust",
+  "name": "Rust Support For create and build",
+  "version": "1.0.0",
+  "description": "provides Cargo project creation and building support",
+  "contributes": {
+    "commands": {
+      "rust.create.linux": {
+        "kind": 1,
+        "scripts": "./scripts/create.sh",
+        "params": [
+          "project_name"
+        ]
+      },
+      "rust.create.windows": {
+        "kind": 1,
+        "scripts": "./scripts/create.bat",
+        "params": [
+          "project_name"
+        ]
+      },
+      "rust.debug.build.linux": {
+        "kind": 1,
+        "scripts": "./scripts/D_build.sh",
+        "params": []
+      },
+      "rust.release.build.linux": {
+        "kind": 1,
+        "scripts": "./scripts/R_build.sh",
+        "params": []
+      },
+      "rust.debug.buildAndRun.linux": {
+        "kind": 1,
+        "scripts": "./scripts/D_build_and_run.sh",
+        "params": []
+      },
+      "rust.release.buildAndRun.linux": {
+        "kind": 1,
+        "scripts": "./scripts/R_build_and_run.sh",
+        "params": []
+      }
+    }
+  }
+}
