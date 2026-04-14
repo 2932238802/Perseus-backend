@@ -4,6 +4,6 @@
     "name": "Rust Support (linux)",
     "version": "1.0.1",
     "download_url": "http://localhost:3000/downloads/linux-rust-extension.zip",
-    "readme_url": "http://localhost:3000/downloads/linux-rust-extension/README.html"
+    "readme_url": "http://localhost:3000/downloads/linux-rust-extension/README.md"
   }
 ]
