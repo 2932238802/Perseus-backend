@@ -3,6 +3,7 @@ use sqlx::postgres::PgPoolOptions;
 use std::net::SocketAddr;
 use tower_http::services::ServeDir;
 
+mod utils;
 mod handlers;
 mod models;
 mod routes;
@@ -21,11 +22,10 @@ async fn main() {
         .route("/", get(|| async { "~ LosAngelous ~" }))
         .nest_service("/downloads", ServeDir::new("downloads"))
         .merge(routes::plugin::plugin_router())
+        .merge(routes::auth::auth_router())
         .with_state(pool);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
-    println!("Perseus Backend is running on http://{}", addr);
-    
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
