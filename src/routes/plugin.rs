@@ -1,4 +1,4 @@
-use crate::handlers::plugin::get_plugins;
+use crate::handlers::plugin::plugin::get_plugins;
 use axum::{Router, routing::get};
 use sqlx::PgPool;
 
