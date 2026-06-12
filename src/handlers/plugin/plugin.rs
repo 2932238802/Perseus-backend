@@ -1,4 +1,4 @@
-use crate::models::plugin::Plugin;
+use crate::models::plugin::request::Plugin;
 use axum::Json;
 use std::fs;
 

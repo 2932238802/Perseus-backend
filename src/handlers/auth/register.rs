@@ -1,5 +1,5 @@
 use crate::utils::jwt::create_token;
-use crate::models::auth::RegisterRequest;
+use crate::models::auth::request::RegisterRequest;
 
 use axum::{Json, extract::State, http::StatusCode, response::IntoResponse};
 use sqlx::PgPool;

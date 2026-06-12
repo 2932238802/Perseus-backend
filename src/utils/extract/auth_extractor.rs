@@ -1,4 +1,4 @@
-use crate::models::claims::Claims;
+use crate::models::auth::claims::Claims;
 use crate::utils::jwt::verify_token;
 use axum::{
     Json,

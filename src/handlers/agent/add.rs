@@ -1,4 +1,4 @@
-use crate::{models::agent::add::AddAgentRequest, utils::extract::auth_extractor::AuthUser};
+use crate::{models::agent::request::AddAgentRequest, utils::extract::auth_extractor::AuthUser};
 use axum::{Json, extract::State, http::StatusCode, response::IntoResponse};
 use serde_json::json;
 use sqlx::PgPool;
@@ -20,7 +20,7 @@ pub async fn add_agent(
     .await;
 
     let provider_id: i32 = match provider_id_res {
-        OK(id) => id,
+        Ok(id) => id,
         Err(sqlx::Error::Database(e)) if e.is_unique_violation() => {
             return (
                 StatusCode::CONFLICT,
@@ -43,15 +43,27 @@ pub async fn add_agent(
         }
     };
 
+    // 载入模型
     for model_name in &request.models {
-        sqlx::query("INSERT INTO ai_model (provider_id, model_name) VALUES ($1, $2)")
+        let res = sqlx::query("INSERT INTO ai_model (provider_id, model_name) VALUES ($1, $2)")
             .bind(provider_id)
             .bind(model_name)
             .execute(&pool)
-            .await
-            .unwrap();
+            .await;
+        if res.is_err(){
+            return (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(json!(
+                    {
+                        "success" : false,
+                        "message" : "模型写入失败"
+                    }
+                ))
+            )
+        }
     }
 
+    // 成功回复
     (
         StatusCode::OK,
         Json(serde_json::json!(

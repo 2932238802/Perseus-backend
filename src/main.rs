@@ -17,12 +17,12 @@ async fn main() {
         .connect(&database_url)
         .await
         .expect("无法连接到 PostgreSQL, 请检查 DATABASE_URL 与数据库是否启动");
-    
     let app = Router::new()
         .route("/", get(|| async { "~ LosAngelous ~" }))
         .nest_service("/downloads", ServeDir::new("downloads"))
         .merge(routes::plugin::plugin_router())
         .merge(routes::auth::auth_router())
+        .merge(routes::agent::agent_router())
         .with_state(pool);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));

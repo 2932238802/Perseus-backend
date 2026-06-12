@@ -1,4 +1,4 @@
-use crate::models::claims::Claims;
+use crate::models::auth::claims::Claims;
 use chrono::{Duration, Utc};
 use jsonwebtoken::{
     DecodingKey, EncodingKey, Header, Validation, decode, encode, errors::Error as JwtError,
