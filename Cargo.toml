@@ -14,4 +14,6 @@ bcrypt = "0.19.1"
 dotenvy = "0.15.7"
 chrono = { version = "0.4", features = ["serde"] }
 jsonwebtoken = { version = "10.4.0", features = ["rust_crypto"] }
-reqwest = {version = "0.13.4",features = ["json"]}
+reqwest = {version = "0.13.4",features = ["json","stream"]}
+futures = "0.3.31" 
+async-stream = "0.3.6"
