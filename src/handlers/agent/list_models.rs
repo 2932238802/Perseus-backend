@@ -43,11 +43,15 @@ pub async fn list_models(
     //     { "  id": "deepseek-reasoner", "object": "model" }
     //   ]
     // }
+    // 过滤掉已下线 / 即将下线的模型 (status: Shutdown / Retiring), 它们无法用于对话
     let models: Vec<String> = body["data"]
         .as_array()
         .map(|arr| {
-            // 这里是 option 解包
             arr.iter()
+                .filter(|m| {
+                    let st = m["status"].as_str().unwrap_or("");
+                    st != "Shutdown" && st != "Retiring"
+                })
                 .filter_map(|m| m["id"].as_str().map(|s| s.to_string()))
                 .collect()
         })

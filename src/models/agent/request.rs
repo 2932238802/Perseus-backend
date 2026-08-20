@@ -22,3 +22,11 @@ pub struct ChatRequest {
     pub provider_name: String,
     pub model: String,
 }
+
+/// 删除厂商/模型的请求: model 为空则删除整个厂商, 非空则只删该模型
+#[derive(Deserialize)]
+pub struct DeleteAgentRequest {
+    pub provider_name: String,
+    #[serde(default)]
+    pub model: Option<String>,
+}

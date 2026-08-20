@@ -3,10 +3,10 @@ use sqlx::postgres::PgPoolOptions;
 use std::net::SocketAddr;
 use tower_http::services::ServeDir;
 
-mod utils;
 mod handlers;
 mod models;
 mod routes;
+mod utils;
 
 #[tokio::main]
 async fn main() {
@@ -24,7 +24,6 @@ async fn main() {
         .merge(routes::auth::auth_router())
         .merge(routes::agent::agent_router())
         .with_state(pool);
-
     let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     axum::serve(listener, app).await.unwrap();

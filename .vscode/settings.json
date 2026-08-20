@@ -1,0 +1,13 @@
+{
+    "rust-analyzer.checkOnSave": true,
+    "rust-analyzer.cargo.buildScripts.enable": true,
+    "rust-analyzer.server.extraEnv": {
+        "CARGO": "cargo"
+    },
+    "files.exclude": {
+        "**/target": true
+    },
+    "search.exclude": {
+        "**/target": true
+    }
+}

@@ -1,5 +1,6 @@
 use crate::handlers::agent::{
-    add::add_agent, chat::chat, list_models::list_models, list_providers::list_providers,
+    add::add_agent, chat::chat, delete::delete_agent, list_models::list_models,
+    list_providers::list_providers,
 };
 use axum::{Router, routing::post};
 use sqlx::PgPool;
@@ -8,6 +9,7 @@ use sqlx::PgPool;
 pub fn agent_router() -> Router<PgPool> {
     Router::new()
         .route("/LosAngelous/api/agent/add", post(add_agent))
+        .route("/LosAngelous/api/agent/delete", post(delete_agent))
         .route("/LosAngelous/api/agent/list_models", post(list_models))
         .route(
             "/LosAngelous/api/agent/list_providers",
